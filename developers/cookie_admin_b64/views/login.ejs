@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    </head>
+    <body>
+        <div class="container d-flex justify-content-center align-items-center h-100 w-50 m-5">
+            <div class="col-md-6">name</div>
+            <div class="col-md-6"> <input id="name" type="text"/></div>
+            <div class="col-md-6">password</div>
+            <div class="col-md-6"><input id="password" type="text"/></div>
+            <div class="row"> <button onclick="login()">submit</button></div>
+        </div>
+      
+      
+    </body>
+    <script>
+        async  function login(){
+            try{
+            const name = document.getElementById("name").value;
+            const password = document.getElementById("password").value;
+            if(name=='admin'){
+                return window.alert("u cannot login as admin")
+            }
+            const body1 = JSON.stringify({ name, password });
+
+            let options={ method: "POST",headers: { "Content-Type": "application/json"},body:body1,redirect:"follow"}
+            let response=await fetch("/login",options)
+            
+            let result=await response.json()
+            await console.log("response is",result)
+            localStorage.setItem("cookie",result.cookie)
+            window.alert("successfull login")
+            window.location.replace("/profile")
+            }
+            catch(e){
+                console.log("err e in logoni",e)
+            }
+        }
+    </script>
+</html>

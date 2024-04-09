@@ -1,0 +1,7 @@
+- npm init
+- npm install express nodemon
+- render a loging page
+- any name except admin
+- on going req to index.js we encode the cookie with name and admin=0
+- send back the name and redirect to someother page
+- if name =admin and admin=1 we render the page as success and a flag
